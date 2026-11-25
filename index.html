@@ -741,7 +741,7 @@
             name: 'LUCIA REVINA DEBY CHILLANOVA',
             age: '20',
             message: 'Selamat ulang tahun ke-20, Lucia! Semoga di kepala dua ini kamu selalu dikelilingi hal-hal baik, dilancarkan segala urusan dan impiannya, dan bahagia terus setiap hari.',
-            gift: 'Voucher Traktir Makan Enak & Kado Spesial',
+            gift: 'Voucher Traktir Makan Meciho',
             claim: 'Screenshot tiket ini dan kirim ke aku sekarang buat langsung diklaim!',
             memories: [
                 {
@@ -1215,25 +1215,22 @@
         }
 
         function playBirthdayMusicBox() {
-            if (customAudioEl) {
-                customAudioEl.play().then(() => { isMusicPlaying = true; updatePlayerUI(); }).catch(() => {});
-                return;
-            }
+         if (customAudioEl) {
+             customAudioEl.play().then(() => { isMusicPlaying = true; updatePlayerUI(); }).catch(() => {});
+             return;
+         }
 
-            const defaultMp3 = document.getElementById('bg-mp3-player');
-            if (!useSynthFallback && defaultMp3) {
-                defaultMp3.play().then(() => {
-                    isMusicPlaying = true;
-                    updatePlayerUI();
-                }).catch(() => {
-                    // Jika lagu.mp3 belum ada di folder, otomatis beralih ke piano synth
-                    useSynthFallback = true;
-                    startSynthLoop();
-                });
-                return;
-            }
-            startSynthLoop();
-        }
+         const defaultMp3 = document.getElementById('bg-mp3-player');
+         if (defaultMp3) {
+             defaultMp3.play().then(() => {
+                 isMusicPlaying = true;
+                 updatePlayerUI();
+             }).catch(() => {
+                 isMusicPlaying = false;
+                 updatePlayerUI();
+             });
+         }
+     }
 
         function stopMusicBox() {
             isMusicPlaying = false;
